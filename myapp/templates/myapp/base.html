@@ -51,11 +51,6 @@
 
             <!-- Right elements -->
             <div class="d-flex align-items-center">
-                <!-- Icon -->
-                <a class="text-reset me-3" href="#">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-
                 <!-- Notifications -->
                 <div class="dropdown">
                     <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
@@ -67,10 +62,7 @@
                             <a class="dropdown-item" href="{% url 'myapp:post_create' %}">新規投稿</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Another news</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="{% url 'myapp:post_list' %}">投稿一覧</a>
                         </li>
                     </ul>
                 </div>

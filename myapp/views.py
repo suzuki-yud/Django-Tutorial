@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, resolve_url
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, TemplateView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, TemplateView, UpdateView, DeleteView, ListView
 from .forms import PostForm
 from .models import Post
 
@@ -40,3 +40,9 @@ class PostDelete(DeleteView):
     def get_success_url(self):
         messages.info(self.request, 'Postを削除しました。')
         return resolve_url('myapp:index')
+
+class PostList(ListView):
+    model = Post
+
+    def get_queryset(self):
+        return Post.objects.all().order_by('-created_at')
