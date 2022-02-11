@@ -30,17 +30,19 @@
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0" href="#">My Blog</a>
+                <a class="navbar-brand mt-2 mt-lg-0" href="/">My Blog</a>
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="{% url 'myapp:index' %}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Team</a>
+                        <a class="nav-link" href="/admin" target="_blank">管理画面へ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Projects</a>
+                        <a class="nav-link" href="#">Pricing</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -49,27 +51,18 @@
 
             <!-- Right elements -->
             <div class="d-flex align-items-center">
-                <!-- Icon -->
-                <a class="text-reset me-3" href="#">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-
                 <!-- Notifications -->
                 <div class="dropdown">
                     <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
                         role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                        <span>Post</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <li>
-                            <a class="dropdown-item" href="#">Some news</a>
+                            <a class="dropdown-item" href="{% url 'myapp:post_create' %}">新規投稿</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Another news</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="{% url 'myapp:post_list' %}">投稿一覧</a>
                         </li>
                     </ul>
                 </div>
@@ -101,6 +94,15 @@
 
     <!-- Start your project here-->
     <main class="container">
+        {% if messages %}
+        <br>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
         {% block content %}
         {% endblock%}
     </main>
