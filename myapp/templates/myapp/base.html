@@ -30,17 +30,19 @@
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0" href="{% url 'myapp:index' %}">My Blog</a>
+                <a class="navbar-brand mt-2 mt-lg-0" href="/">My Blog</a>
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="{% url 'myapp:index' %}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Team</a>
+                        <a class="nav-link" href="/admin" target="_blank">管理画面へ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Projects</a>
+                        <a class="nav-link" href="#">Pricing</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -63,7 +65,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <li>
-                            <a class="dropdown-item" href="#">Some news</a>
+                            <a class="dropdown-item" href="{% url 'myapp:post_create' %}">新規投稿</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="#">Another news</a>
