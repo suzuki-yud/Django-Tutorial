@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ object.title }}</h5>
                 <p class="card-text">{{ object.content }}</p>
-                <a href="{% url 'myapp:index' %}" class="btn btn-light btn-md">一覧に戻る</a>
+                <a href="{% url 'myapp:post_update' object.id %}" class="btn btn-light btn-md">更新</a>
             </div>
         </div>
         <br>

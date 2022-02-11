@@ -102,6 +102,15 @@
 
     <!-- Start your project here-->
     <main class="container">
+        {% if messages %}
+        <br>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
         {% block content %}
         {% endblock%}
     </main>
