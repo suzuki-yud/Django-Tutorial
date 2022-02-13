@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, resolve_url
@@ -61,5 +62,8 @@ class SignUp(CreateView):
     success_url = reverse_lazy('myapp:index')
 
     def form_valid(self, form):
-        messages.info(self.request, 'created the User.')
+        user = form.save()
+        login(self.request, user)
+        self.object = user
+        messages.info(self.request, 'Created the User.')
         return HttpResponseRedirect(self.get_success_url())
