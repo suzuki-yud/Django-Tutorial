@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, resolve_url
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, TemplateView, UpdateView, DeleteView, ListView
-from .forms import PostForm, LoginForm
+from .forms import PostForm, LoginForm, SignUpForm
 from .models import Post
 
 
@@ -54,3 +54,12 @@ class Login(LoginView):
 
 class Logout(LogoutView):
     template_name = 'myapp/logout.html'
+
+class SignUp(CreateView):
+    form_class = SignUpForm
+    template_name = 'myapp/signup.html'
+    success_url = reverse_lazy('myapp:index')
+
+    def form_valid(self, form):
+        messages.info(self.request, 'created the User.')
+        return HttpResponseRedirect(self.get_success_url())
