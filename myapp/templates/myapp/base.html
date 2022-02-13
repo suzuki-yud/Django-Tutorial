@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin" target="_blank">管理画面へ</a>
+                        <a class="nav-link" href="/admin" target="_blank">Admin Page</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
@@ -59,30 +59,36 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <li>
-                            <a class="dropdown-item" href="{% url 'myapp:post_create' %}">新規投稿</a>
+                            <a class="dropdown-item" href="{% url 'myapp:post_create' %}">New Post</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{% url 'myapp:post_list' %}">投稿一覧</a>
+                            <a class="dropdown-item" href="{% url 'myapp:post_list' %}">Post List</a>
                         </li>
                     </ul>
                 </div>
                 <!-- Avatar -->
                 <div class="dropdown">
-                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
-                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
-                            alt="Black and White Portrait of a Man" loading="lazy" />
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="account"
+                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://0.gravatar.com/avatar/c12eda94bd3cb17f9f9beab615c220bf?s=32&amp;d=mm&amp;r=g&amp;s=24"
+                            class="avatar avatar-24 photo rounded-circle">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        {% if request.user.is_authenticated %}
                         <li>
-                            <a class="dropdown-item" href="#">My profile</a>
+                            <a class="dropdown-item">{{ request.user }}</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="{% url 'myapp:logout' %}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a class="dropdown-item" href="{% url 'myapp:login' %}">Login</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="#">Add User</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

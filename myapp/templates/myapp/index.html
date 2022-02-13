@@ -19,7 +19,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ item.title }}</h5>
           <p class="card-text">{{ item.content }}</p>
-          <a href="{% url 'myapp:post_detail' item.id %}" type="button" class="btn btn-light btn-md">もっと読む</a>
+          <a href="{% url 'myapp:post_detail' item.id %}" type="button" class="btn btn-light btn-md">more...</a>
         </div>
         <div class="card-footer">
           <small class="text-muted">Last updated {{ item.updated_at }}</small>

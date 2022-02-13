@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.shortcuts import render, resolve_url
 from django.urls import reverse_lazy
@@ -32,14 +32,14 @@ class PostUpdate(UpdateView):
     form_class = PostForm
 
     def get_success_url(self):
-        messages.info(self.request, 'Postを更新しました。')
+        messages.info(self.request, 'Updated the Post.')
         return resolve_url('myapp:post_detail', pk=self.kwargs['pk'])
 
 class PostDelete(DeleteView):
     model = Post
 
     def get_success_url(self):
-        messages.info(self.request, 'Postを削除しました。')
+        messages.info(self.request, 'Deleted the Post.')
         return resolve_url('myapp:index')
 
 class PostList(ListView):
@@ -51,3 +51,6 @@ class PostList(ListView):
 class Login(LoginView):
     form_class = LoginForm
     template_name = 'myapp/login.html'
+
+class Logout(LogoutView):
+    template_name = 'myapp/logout.html'
